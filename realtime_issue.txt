@@ -1,0 +1,10 @@
+Senario:
+ERROR: script returned exit code 1
+cause: Java class-name mismatch issue
+fixed: give the correct class name
+ERROR: script returned exit code 127
+cause: Java / Maven / Gradle not installed on Jenkins machine
+fixed: sudo apt install openjdk-17-jdk
+==================
+
+=======================================
