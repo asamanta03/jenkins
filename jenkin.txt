@@ -217,6 +217,7 @@ Answer: Use multi-branch pipeline option in Jenkins. This allows each developer 
 
 Scenario 5: Configuration Files Not in Git
 Question: How to handle database credentials or payment gateway credentials that aren't in GitHub?
+“I never store credentials in GitHub. Instead, I use Jenkins Credentials Store or external secret managers like HashiCorp Vault or AWS Secrets Manager. In Jenkinsfile, I inject secrets using credentials binding so they remain secure and masked in logs.”
 Answer: Use vault integration. The developer should integrate vault for managing sensitive credentials and passwords that cannot be stored in the repository.
 ==============================================
 
