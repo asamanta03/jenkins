@@ -555,5 +555,178 @@ Scenario 6: JNLP Agent Error (Historical Issue)
 Problem: Java Network Launch Protocol errors when setting up master-slave
 Solution: Configure security settings in Jenkins global security, change to random ports or fixed ports.
 ================================================================================================================
+“In real scenarios, I focus on logs, isolate whether the issue is in webhook, pipeline, infrastructure, or credentials, then fix it systematically and implement preventive measures like monitoring, RBAC, and backups.”
+===============================================================================================================
+🔥 1. Build Not Triggering After Git Push
+❓ Scenario
+
+Developer pushed code to GitHub but Jenkins didn’t trigger.
+
+✅ Answer
+Check GitHub webhook delivery (200 or not)
+Verify Jenkins URL is accessible
+Ensure “GitHub hook trigger” is enabled
+Check firewall/port 8080
+Review Jenkins logs
+🚨 2. Jenkins Job Deleted Accidentally
+❓ Scenario
+
+Critical job deleted.
+
+✅ Answer
+Restore from /var/lib/jenkins/jobs/ backup
+Recreate using Jenkinsfile from GitHub
+Check config.xml from another environment
+Prevent using RBAC + backups
+🔐 3. Secrets Exposed in Logs
+❓ Scenario
+
+Password visible in Jenkins logs.
+
+✅ Answer
+Immediately rotate credentials
+Move secrets to Jenkins Credentials
+Use withCredentials
+Mask sensitive values
+⏳ 4. Build Taking Too Long
+❓ Scenario
+
+Pipeline is very slow.
+
+✅ Answer
+Enable parallel stages
+Use caching (Maven, npm)
+Optimize Docker builds
+Use better agents (increase CPU/RAM)
+🔄 5. Jenkins Server Down
+❓ Scenario
+
+Jenkins is not accessible.
+
+✅ Answer
+
+Check service:
+
+systemctl status jenkins
+Check logs
+Restart Jenkins
+Verify disk space & memory
+Restore from backup if corrupted
+🌐 6. Webhook Not Working (Very Common)
+❓ Scenario
+
+Webhook configured but not triggering.
+
+✅ Answer
+Validate /github-webhook/ URL
+Check GitHub delivery logs
+Ensure Jenkins is public
+Fix SSL issues
+Try manual curl test
+🐳 7. Docker Build Fails in Jenkins
+❓ Scenario
+
+Pipeline fails during Docker build.
+
+✅ Answer
+Check Docker installed on agent
+
+Verify permissions:
+
+usermod -aG docker jenkins
+Validate Dockerfile
+Check disk space
+☸️ 8. Deployment to Kubernetes Fails
+❓ Scenario
+
+Jenkins cannot deploy to K8s.
+
+✅ Answer
+Check kubeconfig
+Validate cluster connectivity
+Verify RBAC permissions
+Check kubectl installed
+🔑 9. Credentials Not Working
+❓ Scenario
+
+Pipeline fails with authentication error.
+
+✅ Answer
+Verify credentials ID
+Check correct type (secret text, SSH key)
+Regenerate token if expired
+Test manually
+🔀 10. Multiple Branch Builds Not Working
+❓ Scenario
+
+Only main branch builds.
+
+✅ Answer
+Use Multibranch Pipeline
+Install GitHub Branch Source plugin
+Scan repository
+Check webhook events
+🧪 11. Tests Failing in Jenkins but Working Locally
+❓ Scenario
+
+Works on local but fails in pipeline.
+
+✅ Answer
+Check environment differences
+Validate dependencies
+Ensure same Java/Node version
+Check environment variables
+📦 12. Disk Space Full
+❓ Scenario
+
+Jenkins stops due to disk full.
+
+✅ Answer
+Clean old builds
+
+Delete workspace:
+
+rm -rf workspace/*
+Configure log rotation
+Use external storage
+🔥 13. Pipeline Stuck or Hanging
+❓ Scenario
+
+Build stuck indefinitely.
+
+✅ Answer
+Check executor availability
+Thread dump analysis
+Restart stuck build
+Add timeout in Jenkinsfile
+⚙️ 14. Plugin Causing Failure
+❓ Scenario
+
+After plugin install, Jenkins breaks.
+
+✅ Answer
+Rollback plugin
+Check compatibility
+Restart Jenkins
+Review logs
+🔐 15. Unauthorized Access / Security Issue
+❓ Scenario
+
+Unauthorized user modified jobs.
+
+✅ Answer
+Enable RBAC
+Use Matrix Authorization
+Integrate LDAP/SSO
+Audit logs
+🧠 Final Interview Tip
+
+👉 Always answer like this:
+
+Identify issue
+Check logs
+Isolate root cause
+Fix
+Prevent recurrence
 
 
