@@ -208,6 +208,7 @@ Answer: The failed stage will be marked with a red cross, and subsequent stages 
 
 Scenario 3: Accidental Job Deletion
 Question: What if someone accidentally deletes a job?
+“First, I check if Jenkins backups are available and restore the job from /var/lib/jenkins/jobs. If it's a pipeline job, I recreate it using the Jenkinsfile from GitHub. If no backup exists, I try recovering from another environment or rebuild it manually. To prevent this, I ensure regular backups, use pipeline-as-code, and implement RBAC.”
 Answer: To prevent this, you need to implement role-based access control using the "Role-based authentication strategies" plugin. This allows you to segregate access - DevOps team gets full access, L1 team gets view-only access, and leads get write access.
 
 Scenario 4: Multiple Developers Working on Different Branches
