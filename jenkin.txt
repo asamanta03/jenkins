@@ -37,7 +37,7 @@ A: Configure build triggers in Jenkins job:
 
 Go to job Configure
 Under Build Triggers section, enable "Poll SCM"
-Set schedule using cron syntax (e.g., * * * * * for every minute)
+Webhook set up /Set schedule using cron syntax (e.g., * * * * * for every minute)
 Save the configuration
 Jenkins will now automatically check for code changes and trigger builds
 Scenario 4: Troubleshooting Failed Build
