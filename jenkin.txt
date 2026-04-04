@@ -1,3 +1,11 @@
+
+Agent      Type	                 Use Case
+any	       Simple                pipelines
+label	   Specific             node/tools
+none	   Stage-level         control
+docker	   Containerized       builds
+kubernetes Cloud-native        CI/CD
+==================================
 Jenkins:
 Q1: What is Continuous Integration (CI)?
 A: Continuous Integration is a process where developers push code to a centralized location (like GitHub), and automatically building, compilation, integration, and testing happens. The code is tested using unit test cases, and feedback is automatically sent to the developer. This entire automated process is known as CI.
